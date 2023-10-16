@@ -15,11 +15,24 @@ interface Movie {
   providedIn: 'root'
 })
 export class ApiService {
-  dataApi : string = "https://api.themoviedb.org/3/trending/movie/day?api_key=b41c95c7bee406c6d3cc0151c57dd295"
+  data_api : string = "https://api.themoviedb.org/3/"
+  api_key : string = "api_key=b41c95c7bee406c6d3cc0151c57dd295"
 
   constructor(private http: HttpClient) { }
 
   getListData(): Observable<Page[]>{
-      return this.http.get<Page[]>(this.dataApi)
+      return this.http.get<Page[]>(this.data_api+"trending/movie/day?"+this.api_key)
+  }
+
+  // getListDataBySearchQuery(query:string){
+  //     return this.http.get<Movie>(this.data_api+"movie/")
+  // }
+
+  getDetailData(id:number): Observable<Movie>{
+     return this.http.get<Movie>(this.data_api+"movie/"+id+"?"+this.api_key)
+  }
+
+  getSearchByQuery(query: string ) {
+     
   }
 }

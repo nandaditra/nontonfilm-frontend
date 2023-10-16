@@ -1,6 +1,6 @@
 export interface Page {
     page: number,
-    results: any[],
+    results: [],
     total_pages: number,
     total_results: number
 }
