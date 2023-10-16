@@ -13,8 +13,9 @@ import { FilmService } from 'src/app/data/service/film/film.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  films: Film[] = []
-  posts: Movie[] = [];
+  urlImg: string = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"
+  urlId: string = "/detail-film/" 
+  films: any[] = []
   errorMessage!: string;
 
   constructor(
@@ -23,25 +24,18 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.getListFilm();
     this.getListMovies();
-  }
-
-  getListFilm():void {
-    this.filmService.getListFilm()
-    .subscribe(film => this.films = film)
   }
 
   getListMovies(){
     return this.apiService.getListData()
-       .subscribe({
-        next: (posts) => {
-          this.posts = posts;
-          console.log(this.posts["results"]);
-        },
-        error: (error) => {
-          this.errorMessage = error;
-        },
+       .subscribe((data: any) => {
+           this.films = data['results']
+           console.log(this.films)
        })
+  }
+
+  searchMoviesByKeyword() {
+
   }
 }
