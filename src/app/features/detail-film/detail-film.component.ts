@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Film } from 'src/app/data/interfaces/film';
 import { FilmService } from 'src/app/data/service/film/film.service';
@@ -8,28 +10,24 @@ import { FilmService } from 'src/app/data/service/film/film.service';
   styleUrls: ['./detail-film.component.css']
 })
 export class DetailFilmComponent {
-   listFilm : Film[] = []  
+   listFilm : Film[] = [] 
+   film: Number = 1 
   
-   constructor(private filmService : FilmService){ }
+   constructor(
+     private filmService : FilmService,
+     private route: ActivatedRoute,
+     private location: Location){ 
+    
+   }
 
    ngOnInit():void{
-      this.getListSavedItem();
+      
    }
 
-   getListSavedItem():void{
-     this.filmService.getSavedItem()
-        .subscribe(films => this.listFilm = films);
+   getFilmById(): void {
+     const id = Number(this.route.snapshot.paramMap.get('id'));
+     this.filmService.getDetailFilmById(id)
+     .subscribe(movie => this.film = movie)
    }
 
-   addSavedFilm(film : Film):void {
-     this.filmService.addSavedItem(film);
-   }
-
-   deleteSavedFilmById(filmId : Film): void {
-     this.filmService.deleteFilm(filmId)
-   }
-
-   clearSavedItem():void{
-     this.filmService.clearFilm();
-   }
 }

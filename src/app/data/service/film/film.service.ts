@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Film } from '../../interfaces/film';
 import { FILMS } from '../../mocks/mock-films';
+import { Movie } from '../../interfaces/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class FilmService {
   getListFilm(): Observable<Film[]>{
       const films = of(FILMS)
       return films
+  }
+
+  getDetailFilmById(id: number): Observable<Number>{
+     return of(id)
   }
 
   getSavedItem(): Observable<Film[]>{

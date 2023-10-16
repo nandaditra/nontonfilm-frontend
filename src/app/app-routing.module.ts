@@ -15,7 +15,7 @@ const routes: Routes = [
     { path:'sign-up', component: SignUpComponent},
     { path:'saved-film', component: SavedFilmComponent},
     { path:'profile', component: ProfileComponent},
-    { path:'detail-film', component: DetailFilmComponent},
+    { path:'detail-film/:id', component: DetailFilmComponent},
     { path: '**', component: NotFoundComponent}
 ]
 
