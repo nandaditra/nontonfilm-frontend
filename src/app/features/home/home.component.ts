@@ -1,5 +1,5 @@
-import { NoopAnimationPlayer } from '@angular/animations';
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Film } from 'src/app/data/interfaces/film';
 import { Movie } from 'src/app/data/interfaces/movie';
 import { Page } from 'src/app/data/interfaces/page';
@@ -23,6 +23,10 @@ export class HomeComponent {
     private apiService: ApiService){
   }
 
+  searchForm = new FormGroup({
+    search: new FormControl(''),
+ })
+
   ngOnInit(): void {
     this.getListMovies();
   }
@@ -30,12 +34,14 @@ export class HomeComponent {
   getListMovies(){
     return this.apiService.getListData()
        .subscribe((data: any) => {
-           this.films = data['results']
-           console.log(this.films)
+           this.films = data['results'].filter((film:any) => film['poster_path'] !== null)
        })
   }
 
   searchMoviesByKeyword() {
-    return 
+     return this.apiService.getSearchByQuery(this.searchForm.value['search'])
+      .subscribe((data : any)=> {
+         this.films = data['results'].filter((film:any) => film['poster_path'] !== null)
+      })
   }
 }
