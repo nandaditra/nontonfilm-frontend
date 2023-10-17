@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Film } from '../../interfaces/film';
 import { FILMS } from '../../mocks/mock-films';
 import { Movie } from '../../interfaces/movie';
+import { ApiService } from '../api/api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,11 @@ import { Movie } from '../../interfaces/movie';
 export class FilmService {
   savedItem : any[] = []
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   getListFilm(): Observable<Film[]>{
       const films = of(FILMS)
       return films
-  }
-
-  getDetailFilmById(id: number): Observable<Number>{
-     return of(id)
   }
 
   getSavedItem(): Observable<Film[]>{

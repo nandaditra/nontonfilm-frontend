@@ -1,8 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { Film } from 'src/app/data/interfaces/film';
-import { FilmService } from 'src/app/data/service/film/film.service';
+import { ApiService } from 'src/app/data/service/api/api.service';
 
 @Component({
   selector: 'app-detail-film',
@@ -10,24 +9,27 @@ import { FilmService } from 'src/app/data/service/film/film.service';
   styleUrls: ['./detail-film.component.css']
 })
 export class DetailFilmComponent {
-   listFilm : Film[] = [] 
-   film: Number = 1 
+  urlImg: string = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"
+  urlId: string = "/detail-film/"  
+  film: any = []
   
    constructor(
-     private filmService : FilmService,
+     private apiService : ApiService,
      private route: ActivatedRoute,
      private location: Location){ 
-    
    }
 
    ngOnInit():void{
-      
+      this.getFilmById();
    }
 
-   getFilmById(): void {
+   getFilmById(){
      const id = Number(this.route.snapshot.paramMap.get('id'));
-     this.filmService.getDetailFilmById(id)
-     .subscribe(movie => this.film = movie)
+     return this.apiService.getDetailData(id)
+      .subscribe((movie:any) =>  {
+        this.film = movie
+        console.log(this.film)
+      })
    }
 
 }
