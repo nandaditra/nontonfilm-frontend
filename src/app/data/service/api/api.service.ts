@@ -24,15 +24,11 @@ export class ApiService {
       return this.http.get<Page[]>(this.data_api+"trending/movie/day?"+this.api_key)
   }
 
-  // getListDataBySearchQuery(query:string){
-  //     return this.http.get<Movie>(this.data_api+"movie/")
-  // }
-
   getDetailData(id:number): Observable<Movie>{
      return this.http.get<Movie>(this.data_api+"movie/"+id+"?"+this.api_key)
   }
 
-  getSearchByQuery(query: string ) {
-     
+  getSearchByQuery(query: string | null | undefined): Observable<Page[]>{
+     return this.http.get<Page[]>(this.data_api+"search/movie?query="+query+"&"+this.api_key)
   }
 }

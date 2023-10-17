@@ -1,19 +1,19 @@
 <main class="container">
     <div class="p-5">
       <h1 class="m-5 text-center text-title">Nikmati Film Sesuai Dengan Selera dan Minat Anda</h1>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="search film, video or etc">
-        <div class="input-group-append">
-          <button class="btn btn-danger btn-search" type="button">Search</button>
-        </div>
-      </div>
+      <form [formGroup]="searchForm" (ngSubmit)="searchMoviesByKeyword()" class="input-group mb-3">
+        `<input formControlName="search" type="text" class="form-control" placeholder="search film, video or etc">
+         <div class="input-group-append">
+          <button class="btn btn-danger btn-search" type="submit">Search</button>
+         </div>
+      </form>
     </div> 
   
     <div>
        <div class="row">
          <div *ngFor="let film of films" class="col-6 col-md-3 p-2">
            <a routerLink="/detail-film/{{film.id}}">
-             <img 
+             <img
                [src]="urlImg.concat(film.poster_path)" 
                class="w-100 rounded-sm"
               > 
