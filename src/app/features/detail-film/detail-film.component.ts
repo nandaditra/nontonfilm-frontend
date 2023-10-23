@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/data/service/api/api.service';
 export class DetailFilmComponent {
   urlImg: string = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"
   urlId: string = "/detail-film/"  
+  loading: boolean = false
   film: any = []
   
    constructor(
@@ -24,12 +25,13 @@ export class DetailFilmComponent {
    }
 
    getFilmById(){
+     this.loading = true
      const id = Number(this.route.snapshot.paramMap.get('id'));
      return this.apiService.getDetailData(id)
       .subscribe((movie:any) =>  {
         this.film = movie
-        console.log(this.film)
-      })
+        this.loading = false 
+     })
    }
 
 }

@@ -1,5 +1,4 @@
 export interface Movie {
-    homepage: string,
     id: number,
     original_title: string,
     overview: string,
@@ -8,4 +7,5 @@ export interface Movie {
     production_companies: any[],
     production_countries: any[],
     title: string,
+    homepage: string,
 }

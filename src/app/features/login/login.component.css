@@ -1,0 +1,22 @@
+.img-picture {
+  width:50%;
+}
+
+.block-auth {
+  width:50%;
+}
+
+@media only screen and (max-width: 765px) {
+    .img-picture {
+      display: none;
+      visibility: hidden;
+    }
+
+    .d-flex {
+      display:block;
+    }
+
+    .block-auth {
+      width: 100%;
+    }
+ }

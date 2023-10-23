@@ -9,17 +9,31 @@
       </form>
     </div> 
   
-    <div>
-       <div class="row">
-         <div *ngFor="let film of films" class="col-6 col-md-3 p-2">
-           <a routerLink="/detail-film/{{film.id}}">
+    
+    <div class="row">
+         <div *ngIf="loading"  class="item">
+              <ngx-skeleton-loader
+                  count="8"
+                  [theme]="{ 
+                    'border-radius': '5px',
+                    height: '400px',
+                    width: '275px',
+                    'background-color': '#ebebeb',
+                    border: '1px solid white',
+                    'margin-right': '10px'
+              }"
+              ></ngx-skeleton-loader>
+         </div>
+         <div *ngFor="let film of films" class="col-6 col-md-3 p-2 position-relative">
+            <app-favourite *ngIf="!favourite"></app-favourite>
+            <app-favourite-border *ngIf="favourite"></app-favourite-border>
+            <a routerLink="/detail-film/{{film.id}}">
              <img
                [src]="urlImg.concat(film.poster_path)" 
                class="w-100 rounded-sm"
               > 
             </a>
           </div>
-       </div>
-    </div>
+      </div>
   </main>
   

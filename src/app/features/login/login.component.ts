@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +14,25 @@ export class LoginComponent {
 
     //form login setup
     loginForm = new FormGroup({
-       email: new FormControl(''),
-       password: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
     })
 
-    onSubmit() {
-      console.log(this.loginForm.value);
+    constructor(
+      private authService: AuthService,
+      private router: Router
+    ){
+
+    }
+
+    loginWithEmailAndPassword() {
+      const userData = Object.assign({email: this.loginForm.value.email, password: this.loginForm.value.password});
+      this.authService.signWithEmailAndPassword(userData).then(()=> {
+          this.router.navigateByUrl('home').then(() => {
+             window.location.reload();
+           });
+      }).catch((error:any)=> {
+        console.log(error)
+      }) 
     }
 }

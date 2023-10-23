@@ -1,11 +1,11 @@
 <main>
     <div class="d-flex">
-        <div class="w-50">
+        <div class="img-picture">
             <img class="w-100" [src]="imageSign">
         </div>
-        <div class="w-50 pr-5">
+        <div class="block-auth">
             <h1 class="my-4 text-center">Sign Up</h1>
-            <form  [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="px-5">
+            <form  [formGroup]="signUpForm" (ngSubmit)="registerWithEmailandPassword()" class="px-5">
                 <div class="form-group">
                     <label for="name" class="text-danger">Name</label>
                     <input formControlName="name" name="text" type="text" class="form-control rounded-pill border border-danger" placeholder="Enter email">

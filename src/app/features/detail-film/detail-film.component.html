@@ -1,16 +1,23 @@
 <div class="container my-5">
     <div class="row">
-        <div class="col-3">
-            <img 
+        <div class="col-sm-12 col-md-12 col-lg-3">
+            <app-loader *ngIf="loading" count="1"></app-loader>
+            <img  
+                *ngIf="film"
                 [src]="urlImg.concat(film['poster_path'])"
                 class="w-100 rounded-sm">
         </div>
-        <div class="col-9">
+        <div class="col-sm-12 col-md-12 col-lg-9">
             <div class="p-2">
-                 <h1>{{ film['title']}}</h1>
-                 <span class="btn btn-warning rounded-pill">{{ film['tagline']}}</span>
+                 <h1 *ngIf="film">{{ film['title']}}</h1>
+                  <ngx-skeleton-loader *ngIf="loading" count="1" appearance="line"></ngx-skeleton-loader>
+                 
+                  <span *ngIf="film" class="btn btn-warning rounded-pill">{{ film['tagline']}}</span>
+                  <ngx-skeleton-loader *ngIf="loading" count="1" appearance="line"></ngx-skeleton-loader>             
+                 
                  <h5 class="mt-3">Overview</h5>
-                 <p class="mt-1 mb-3">{{ film['overview'] }}</p>
+                 <p *ngIf="film" class="mt-1 mb-3">{{ film['overview'] }}</p><ngx-skeleton-loader *ngIf="loading" count="3" appearance="line"></ngx-skeleton-loader> 
+                 
                  <span class="btn btn-danger rounded-pill">Popularity : {{ film['popularity']}}</span>
                  <span class="btn btn-success rounded-pill mx-2">🤍 {{ film['vote_count']}}</span>
             </div>
@@ -18,33 +25,37 @@
     </div>
 
     <div class="row my-3">
-        <div class="col-9 row">
-            <div class="col-6 py-2">
+        <div class="col-sm-12 col-md-9">
+            <div class="py-2">
                 <h3>Producers</h3>
-                <ul class="p-0 list-group list-group-horizontal">
-                    <li *ngFor="let company of film['production_companies']" class="list-group mr-2">
+                <ngx-skeleton-loader *ngIf="loading" count="1" appearance="line"></ngx-skeleton-loader>    
+                <div *ngIf="film" class="d-flex">
+                    <div *ngFor="let company of film['production_companies']" class="mr-2">
                         <span class="btn btn-outline-info">{{ company.name }}</span>
-                    </li>
-                 </ul>
+                    </div>
+                 </div>
             </div>
-        
-            <div class="col-6 py-2">
+  `      
+            <div class="py-2">
                  <h3>Languages</h3>
-                 <ul class="p-0 list-group  list-group-horizontal">
-                    <li *ngFor="let language of film['spoken_languages']" class="list-group mr-2">
+                 <ngx-skeleton-loader *ngIf="loading" count="1" appearance="line"></ngx-skeleton-loader>    
+                 <div *ngIf="film" class="d-flex">
+                    <div *ngFor="let language of film['spoken_languages']" class="mr-2">
                         <span class="btn btn-outline-info">{{ language.name }}</span>
-                    </li>
-                 </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-sm-12 col-md-3">
             <div>
                 <h5>Status</h5>
-                <p class="fs-1">{{ film['status']}}</p>
+                <ngx-skeleton-loader *ngIf="loading" count="1" appearance="line"></ngx-skeleton-loader>    
+                <p *ngIf="film" class="fs-1">{{ film['status']}}</p>
             </div>
             <div>
                 <h5>Budget</h5>
-                <p class="fs-1">${{ film['budget']}}</p>
+                <ngx-skeleton-loader *ngIf="loading" count="1" appearance="line"></ngx-skeleton-loader>    
+                <p *ngIf="film" class="fs-1">${{ film['budget']}}</p>
             </div>
         </div>
     </div>

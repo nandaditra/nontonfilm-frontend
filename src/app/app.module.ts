@@ -15,6 +15,13 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { DetailFilmComponent } from './features/detail-film/detail-film.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { EmptyComponent } from './shared/components/empty/empty.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { FavouriteComponent } from './shared/components/favourite/favourite.component';
+import { FavouriteBorderComponent } from './shared/components/favourite-border/favourite-border.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { AngularFireModule} from '@angular/fire/compat'
+import { AngularFireAuthModule} from '@angular/fire/compat/auth'
+import { FirestoreModule } from '@angular/fire/firestore'
 
 @NgModule({
   declarations: [
@@ -29,13 +36,28 @@ import { EmptyComponent } from './shared/components/empty/empty.component';
     DetailFilmComponent,
     NotFoundComponent,
     EmptyComponent,
+    FavouriteComponent,
+    FavouriteBorderComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgxSkeletonLoaderModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyC4zpZNNpXiUZFW7j2mm90dTP80d03uplo",
+      authDomain: "nontonmovie-eb44d.firebaseapp.com",
+      projectId: "nontonmovie-eb44d",
+      storageBucket: "nontonmovie-eb44d.appspot.com",
+      messagingSenderId: "72362458557",
+      appId: "1:72362458557:web:5b0d056ed165c36f53e6d4",
+      measurementId: "G-9JCQX8B728"
+    }),
+    AngularFireAuthModule,
+    FirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
