@@ -11,3 +11,19 @@
     font-weight:700;
     font-size:50px;
 }
+
+.search-nav {
+    padding:48px;
+}
+
+@media only screen and (max-width: 765px) {
+    .text-title {
+        font-weight:700;
+        font-size:30px;
+        margin:4px;
+    }
+
+    .search-nav {
+        padding:20px;
+    }
+ }
