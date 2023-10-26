@@ -23,7 +23,7 @@ export class AuthService {
 
   async signOut(){
     this.userService.outUser();
-    return this.auth.signOut().then(()=> {
+    return this.auth.signOut().then((res)=> {
       window.alert("You have logout")
     })
   }

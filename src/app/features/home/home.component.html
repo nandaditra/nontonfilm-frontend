@@ -24,6 +24,9 @@
               }"
               ></ngx-skeleton-loader>
          </div>
+         <div *ngIf="notFound">
+            <app-empty></app-empty>
+         </div>
          <div *ngFor="let film of films" class="col-6 col-md-3 p-2 position-relative">
             <a routerLink="/detail-film/{{film.id}}">
              <img

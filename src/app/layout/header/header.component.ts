@@ -29,6 +29,7 @@ export class HeaderComponent {
      if(this.userService.getUser()) {
         this.user = this.userService.getUser()
         this.isAuthenticated = true;
+        return 
      }
   }
 

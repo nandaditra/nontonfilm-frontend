@@ -14,7 +14,7 @@ export class HomeComponent {
   films: any[] = []
   loading: boolean = true;
   favourite: boolean = false;
-  errorMessage!: string;
+  notFound: boolean = false;
 
   constructor(
     private filmService: FilmService,
@@ -42,6 +42,10 @@ export class HomeComponent {
      this.loading = true;
      return this.apiService.getSearchByQuery(this.searchForm.value['search'])
       .subscribe((data : any)=> {
+         if(data['results'] == null) {
+            this.notFound = true
+            console.log(this.notFound)
+         }
          this.films = data['results'].filter((film:any) => film['poster_path'] !== null)
          this.loading = false; 
       })
