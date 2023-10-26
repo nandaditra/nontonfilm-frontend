@@ -10,6 +10,7 @@
 .text-title {
     font-weight:700;
     font-size:50px;
+    line-height: 55px;
 }
 
 .search-nav {
@@ -20,6 +21,7 @@
     .text-title {
         font-weight:700;
         font-size:30px;
+        line-height: 35px;
         margin:4px;
     }
 
